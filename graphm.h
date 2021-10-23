@@ -6,6 +6,8 @@
 
 using namespace std;
 
+const int MAXNODES = 100;
+
 class GraphM {
 public:
     GraphM();

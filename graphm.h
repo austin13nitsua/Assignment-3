@@ -1,8 +1,20 @@
 #ifndef GRAPHM_H
 #define GRAPHM_H
 
+#include "nodedata.h"
+#include <iostream>
+
+using namespace std;
+
 class GraphM {
 public:
+    GraphM();
+    void buildGraph(istream& infile);
+    bool insertEdge();        
+    bool removeEdge();
+    bool findShortestPath();
+    void displayAll();
+    void display();
 
 private:
     struct TableType {
@@ -14,6 +26,8 @@ private:
     int C[MAXNODES][MAXNODES];          // Cost array, the adjacency matrix
     int size;                           // number of ndoes in the graph
     TableType T[MAXNODES][MAXNODES];    // stores Dijkstra information
+
+    void initT();
 };
 
 #endif

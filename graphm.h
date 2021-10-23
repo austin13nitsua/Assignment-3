@@ -10,6 +10,10 @@ private:
         int dist;       // currently known shortest distance from source
         int path;       // previous node in path of min dist
     };
-}
+    NodeData data[MAXNODES];            // data for graph nodes information
+    int C[MAXNODES][MAXNODES];          // Cost array, the adjacency matrix
+    int size;                           // number of ndoes in the graph
+    TableType T[MAXNODES][MAXNODES];    // stores Dijkstra information
+};
 
 #endif

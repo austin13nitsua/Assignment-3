@@ -11,7 +11,7 @@ const int MAXNODES = 100;
 class GraphM {
 public:
     GraphM();
-    void buildGraph(istream& infile);
+    void buildGraph(istream&);
     bool insertEdge();        
     bool removeEdge();
     bool findShortestPath();
@@ -29,7 +29,8 @@ private:
     int size;                           // number of ndoes in the graph
     TableType T[MAXNODES][MAXNODES];    // stores Dijkstra information
 
-    void initT();
+    void initC(); // Initializes cost array
+    void initT(); // Initializes dijkstra array
 };
 
 #endif

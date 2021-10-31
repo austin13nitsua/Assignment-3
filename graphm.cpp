@@ -2,24 +2,25 @@
 
 GraphM::GraphM() {
     size = 0;
-    for(int i = 0; i < MAXNODES; i++) {
-        for(int j = 0; j < MAXNODES; j++) {
-            C[i][j] = INT_MAX;
-        }
-        C[i][i] = INT_MAX;
-    }
+    initC();
     initT();
 }
 
 void GraphM::initC() {
-
+    for(int i = 0; i < MAXNODES; i++) {
+        for(int j = 0; j < MAXNODES; j++) {
+            C[i][j] = INT_MAX;
+        }
+    }
 }
 
 void GraphM::initT() {
     for(int i = 0; i < MAXNODES; i++) {
-        T[i][i].dist = INT_MAX;
-        T[i][i].visited = false;
-        T[i][i].path = 0;
+        for(int j = 0; j < MAXNODES; j++) {
+            T[i][j].dist = INT_MAX;
+            T[i][j].visited = false;
+            T[i][j].path = 0;
+        }
     }
 }
 

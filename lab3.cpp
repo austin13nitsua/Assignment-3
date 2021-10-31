@@ -14,7 +14,7 @@
 
 #include <iostream>
 #include <fstream>
-#include "graphl.h"
+//#include "graphl.h"
 #include "graphm.h"
 using namespace std;
 
@@ -26,16 +26,25 @@ int main() {
       return 1;
    }
 
+   GraphM G;
+   G.buildGraph(infile1);
+   G.findShortestPath();
+   G.displayAll();
+   
+   
    //for each graph, find the shortest path from every node to all other nodes
+   /*
    for(;;){
+      cout << "Entering loop" << endl;
       GraphM G;
       G.buildGraph(infile1);
       if (infile1.eof()) 
          break;
-      G.findShortestPath();        
-      G.displayAll();              // display shortest distance, path to cout
-      G.display(3,1);              // display path from node 3 to 1 to cout
-      // may be other calls to display 
+      //G.findShortestPath();        
+      //G.displayAll();              // display shortest distance, path to cout
+      //G.display(3,1);              // display path from node 3 to 1 to cout
+      // may be other calls to display
+      cout << "End of loop" << endl; 
    }
 
    // part 2 
@@ -46,6 +55,8 @@ int main() {
    }
 
    //for each graph, find the depth-first search ordering
+   
+
    for (;;) {
       GraphL G;
       G.buildGraph(infile2);
@@ -54,8 +65,9 @@ int main() {
       G.displayGraph();
       G.depthFirstSearch();    // find and display depth-first ordering to cout
    }
- 
+   
+   */
+
    cout << endl;
    return 0;
 }
-

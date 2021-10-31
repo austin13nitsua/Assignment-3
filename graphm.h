@@ -2,7 +2,10 @@
 #define GRAPHM_H
 
 #include "nodedata.h"
+#include <climits>
 #include <iostream>
+#include <iomanip>
+#include <string>
 
 using namespace std;
 
@@ -18,6 +21,8 @@ public:
     void displayAll();
     void display();
 
+    void test(); // For debugging
+
 private:
     struct TableType {
         bool visited;   // whether node has been visited
@@ -31,6 +36,13 @@ private:
 
     void initC(); // Initializes cost array
     void initT(); // Initializes dijkstra array
+    
+    int min(int, int);    // Finds lower value
+    int findV(int);       // Finds not yet visited node with min dist
+
+    string pathToString(int, int); // Makes a path between nodes into a string
+
+    
 };
 
 #endif

@@ -19,13 +19,13 @@
 using namespace std;
 
 int main() {
-   // part 1
-   ifstream infile1("data31.txt");
+   ifstream infile1("data3uwb.txt");
    if (!infile1) {
       cout << "File could not be opened." << endl;
       return 1;
    }
 
+    cout << "----------" << " TESTING PART ONE " << "----------" << endl;
    //for each graph, find the shortest path from every node to all other nodes
    for(;;){
       GraphM G;
@@ -34,18 +34,16 @@ int main() {
          break;
       G.findShortestPath();        
       G.displayAll();              // display shortest distance, path to cout
-      G.display(3,1);              // display path from node 3 to 1 to cout
       // may be other calls to display 
    }
 
-   // part 2 
-   ifstream infile2("data32.txt");
+    cout << "----------" << " TESTING PART TWO " << "----------" << endl;
+   //for each graph, find the depth-first search ordering
+   ifstream infile2("data3uwb2.txt");
    if (!infile2) {
       cout << "File could not be opened." << endl;
       return 1;
    }
-
-   //for each graph, find the depth-first search ordering
    for (;;) {
       GraphL G;
       G.buildGraph(infile2);

@@ -45,6 +45,8 @@ void GraphM::buildGraph(istream& infile) {
     for(;;) {
         infile >> fromNode >> toNode;
         if(fromNode == 0 && toNode == 0) {
+            int garbage;
+            infile >> garbage;
             return; // end of edge data
         } 
         infile >> C[fromNode][toNode];
@@ -78,6 +80,9 @@ bool GraphM::findShortestPath() {
 
             // For each w adjacent to v
             for(int k = 1; k <= size; k++) {
+                if(C[v][k] == INT_MAX) {
+                    continue;
+                }
                 if(!T[i][k].visited) {
                     int original = T[i][k].dist;
                     int throughV = T[i][v].dist + C[v][k];
@@ -116,28 +121,72 @@ void GraphM::displayAll() {
             if(i == j) {
                 continue;
             }
+            cout << setw(32);
+            cout << i << "        ";
+            cout << j << "        ";
             if(T[i][j].dist != INT_MAX) {
-                //cout << setw(66);
-                cout << i << "        ";
-                cout << j << "        ";
                 cout << T[i][j].dist << "        ";
-                //cout << pathToString(i, j) << endl;
+                cout << pathToString(i, j) << endl;
+            }
+            else {
+                cout << "---        ";
+                cout << endl;
+            }
+            
+            if(T[i][j].dist != INT_MAX) {
+                
             }
         }
     }
 }
 
-void GraphM::display() {
-
+void GraphM::display(int i, int j) {
+    cout << "\t" << i << "\t" << j << "\t";
+    if(T[i][j].dist == INT_MAX) {
+        cout << "---" << endl;
+        return;    
+    }
+    cout << T[i][j].dist << "\t";
+    cout << pathToString(i,j) << endl;
+    cout << detailedPathToString(i,j) << endl;
 }
 
 string GraphM::pathToString(int i, int j) {
     string path;
-    while(j != i) {
-        path.push_back(T[i][j].path);
+    stack<int> route;
+    route.push(j);
+    while(j != 0) {
+        if(T[i][j].path == 0) {
+            break;
+        }
+        route.push(T[i][j].path);
         j = T[i][j].path;
     }
-    path.push_back(i);
+    while (!route.empty()) {
+        path.append(to_string(route.top()));
+        path.append(" ");
+        route.pop();
+    }
+    return path;
+}
+
+string GraphM::detailedPathToString(int i, int j) {
+    stringstream ss;
+    stack<int> route;
+    route.push(j);
+    while(j != 0) {
+        if(T[i][j].path == 0) {
+            break;
+        }
+        route.push(T[i][j].path);
+        j = T[i][j].path;
+    }
+    while (!route.empty()) {
+        ss << data[route.top()];
+        ss << endl;
+        route.pop();
+    }
+    return ss.str();
 }
 
 void GraphM::test() {

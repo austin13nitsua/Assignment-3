@@ -6,6 +6,8 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <sstream>
+#include <stack>
 
 using namespace std;
 
@@ -19,7 +21,7 @@ public:
     bool removeEdge();
     bool findShortestPath();
     void displayAll();
-    void display();
+    void display(int, int);
 
     void test(); // For debugging
 
@@ -41,6 +43,7 @@ private:
     int findV(int);       // Finds not yet visited node with min dist
 
     string pathToString(int, int); // Makes a path between nodes into a string
+    string detailedPathToString(int, int); // Makes a detailed path string
 
     
 };

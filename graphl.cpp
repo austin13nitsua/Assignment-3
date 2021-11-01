@@ -1,7 +1,17 @@
 #include "graphl.h"
 
+//----------------------------------------------------------------------------
+// Default Constructor
+// Preconditions:   None
+// Postconditions:  Adjacency array is populated with nodes and their edges/data
+//                  size is set to the number of nodes in the Graph
 GraphL::GraphL() : size(0) {}
 
+//----------------------------------------------------------------------------
+// buildGraph
+// Preconditions:   istream object passed as parameter is correctly formatted as
+//                  detailed at the top of this file
+// Postconditions:  istream is read and Graph is now filled with data on nodes
 void GraphL::buildGraph(istream& infile) {
    int fromNode, toNode;          // from and to node ends of edge
 
@@ -29,6 +39,11 @@ void GraphL::buildGraph(istream& infile) {
    }
 }
 
+//----------------------------------------------------------------------------
+// displayGraph
+// Preconditions:   None
+// Postconditions:  Nodes, their information, and their edges are printed out to
+//                  the console
 void GraphL::displayGraph() {
     cout << "Graph:" << endl;
     for(int i = 1; i <= size; i++) {
@@ -40,6 +55,11 @@ void GraphL::displayGraph() {
     cout << endl;
 }
 
+//----------------------------------------------------------------------------
+// depthFirstSearch
+// Preconditions:   None
+// Postconditions:  A sequence of the nodes in the graph is printed out to the 
+//                  console as found in the depth-first search
 void GraphL::depthFirstSearch() {
     // Create array to track which edges have been visited
     bool* visited = new bool[size+1];
@@ -70,6 +90,11 @@ void GraphL::depthFirstSearch() {
     visited = nullptr;
 }
 
+//----------------------------------------------------------------------------
+// dfsHelper
+// Preconditions:   None
+// Postconditions:  Bool array parameter is updated, current node is processed
+//                  by pushing it into the queue parameter 
 void GraphL::dfsHelper(int v, bool* visited, queue<int>& visitedNodes) {
     // Mark v as visited
     visited[v] = true;
